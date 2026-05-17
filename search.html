@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trash to Treasure2</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(to bottom right, #0a3d2e, #1b5e4b);
+      color: #fff;
+    }
+
+    /* Navbar */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 50px;
+      background-color: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(8px);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #c5ff95;
+      transition: 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Search box */
+    .search-container {
+      display: flex;
+      align-items: center;
+      background-color: #ffffff;
+      border-radius: 25px;
+      padding: 5px 15px;
+      height: 35px;
+    }
+
+    .search-container input {
+      border: none;
+      outline: none;
+      background: none;
+      color: #333;
+      font-size: 14px;
+      width: 150px;
+    }
+
+    .search-container button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: #555;
+      font-size: 18px;
+    }
+
+    /* Content */
+    .content {
+      margin-top: 120px;
+      padding: 50px;
+      text-align: center;
+    }
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: white;
+      color: #222;
+      width: 220px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .card h3 {
+      margin: 15px;
+      font-size: 18px;
+    }
+
+    .card p {
+      font-size: 13px;
+      margin: 0 15px 15px 15px;
+      color: #444;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Trash to Treasure²</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Services</a>
+      <a href="#">Contact Us</a>
+      <a href="#">Blog</a>
+    </nav>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search...">
+      <button onclick="searchItems()">🔍</button>
+    </div>
+  </header>
+
+  <div class="content">
+    <h1>Let's Explore</h1>
+    <p>Temukan ide kreatif untuk mengubah limbah menjadi karya bernilai tinggi.</p>
+
+    <div class="cards" id="cardList">
+      <div class="card">
+        <img src="https://i.imgur.com/d1cQKxC.jpg" alt="Mosaic Butterfly">
+        <h3>Mosaic Butterfly</h3>
+        <p>Hiasan dinding dari pecahan kaca berwarna-warni yang memantulkan cahaya indah.</p>
+      </div>
+      <div class="card">
+        <img src="https://i.imgur.com/m9Y9O8B.jpg" alt="Flower Mirror">
+        <h3>Flower Mirror</h3>
+        <p>Cermin unik dari kardus dan limbah kaca yang jadi karya estetik bernilai tinggi.</p>
+      </div>
+      <div class="card">
+        <img src="https://i.imgur.com/vSxT7oY.jpg" alt="Yellow Shelf">
+        <h3>Yellow Shelf</h3>
+        <p>Rak serbaguna dari bahan bekas, kuat, dan cocok untuk ruangan minimalis.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function searchItems() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const desc = card.querySelector('p').textContent.toLowerCase();
+        if (title.includes(input) || desc.includes(input)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // Fungsi realtime (langsung nyari pas diketik)
+    document.getElementById('searchInput').addEventListener('keyup', searchItems);
+  </script>
+
+</body>
+</html>
